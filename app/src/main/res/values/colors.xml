@@ -8,6 +8,12 @@
     <color name="robinBlue2">#f5c5daf1</color>
     <color name="orange">#ffbb28</color>
     <color name="black">#000000</color>
+    <color name="indicator_1">#55B3C2</color>
+    <color name="indicator_2">#64A4A4</color>
+    <color name="indicator_3">#66D7B9</color>
+    <color name="indicator_4">#FDBC7D</color>
+    <color name="list_selected">#b3b3b3</color>
+    <color name="list_normal">#ffffff</color>
 
 
 </resources>

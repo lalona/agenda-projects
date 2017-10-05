@@ -19,4 +19,18 @@
     <string name="what_is_your_goal">What\'s your goal?</string>
     <string name="date_empty">../../..</string>
     <string name="when">When?</string>
+    <string name="cont">Continue</string>
+    <string name="meta">Meta</string>
+    <string name="guide">Guide</string>
+    <string name="select_days_you_will_work">Days you plan to work</string>
+    <string name="DOMINGO">Sunday</string>
+    <string name="LUNES">Monday</string>
+    <string name="MARTES">Tuesday</string>
+    <string name="MIERCOLES">Wednesday</string>
+    <string name="JUEVES">Thursday</string>
+    <string name="VIERNES">Friday</string>
+    <string name="SABADO">Saturday</string>
+    <string name="mark_all">All</string>
+    <string name="all">All</string>
+    <string name="days">Days</string>
 </resources>

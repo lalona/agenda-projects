@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:weightSum="10"
+    android:layout_height="match_parent" android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></View>
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="@string/select_days_you_will_work"
+        android:inputType="textPersonName"
+        android:textSize="@dimen/txt_select_days_you_will__work"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/android:list"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dip"
+        android:layout_weight="10"/>
+    <Button
+        android:id="@+id/btnSelDesTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_default"
+        android:text="@string/mark_all"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

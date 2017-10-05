@@ -28,8 +28,8 @@ class DemoCollectionPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case META:
-                Fragment fragmentMeta = new FragmentMeta();
-                return fragmentMeta;
+                //Fragment fragmentMeta = new FragmentMeta();
+                //return fragmentMeta;
             case FECHAS:
                 //return;
             case CALENDARIO:

@@ -7,4 +7,6 @@
     <dimen name="margin_question_goal">50dp</dimen>
     <dimen name="date_text_picked">30sp</dimen>
     <dimen name="text_question_when">55sp</dimen>
+    <dimen name="txt_select_days_you_will__work">30sp</dimen>
+    <dimen name="list_letter_size">20sp</dimen>
 </resources>

@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 //AppearFragment.appearFragmentMA(MainActivity.this,fragmentNewProyect,position);
 
 
-                final Intent intent = new Intent(MainActivity.this, FragmentNewProyect.class);
+                //final Intent intent = new Intent(MainActivity.this, FragmentNewProyect.class);
+                final Intent intent = new Intent(MainActivity.this, FragmentNewProyectInk.class);
                 intent.putExtras(new Bundle());
                 //intent.putExtra(BLE_ADDRESS, ble_address);
                 startActivity(intent);
