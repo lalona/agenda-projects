@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="plan_a_new_day">Plan a new day</string>
+    <string name="new_day">New day</string>
+    <string name="history">History</string>
+    <string name="look_at_your_progress">Look at your progress</string>
+    <string name="show_progress">Show progress</string>
+    <string name="how_to_improve_your_life">How to improve your life</string>
+    <string name="help">Help</string>
+    <string name="hello">Hello</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="user_name">Username</string>
+    <string name="view_profile">View profile</string>
+    <string name="my_moment">My moment</string>
+    <string name="what_you_should_b_d">What you should be doing</string>
+    <string name="accomplish_something">Accomplish something</string>
+    <string name="new_project">New project</string>
+    <string name="what_is_your_goal">What\'s your goal?</string>
+    <string name="date_empty">../../..</string>
+    <string name="when">When?</string>
+</resources>

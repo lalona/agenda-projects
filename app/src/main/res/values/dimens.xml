@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_vertical_margin">5dp</dimen>
+    <dimen name="activity_horizontal_margin">5dp</dimen>
+    <dimen name="actionbar_text_size">30dp</dimen>
+    <dimen name="text_question_goal">40sp</dimen>
+    <dimen name="margin_question_goal">50dp</dimen>
+    <dimen name="date_text_picked">30sp</dimen>
+    <dimen name="text_question_when">55sp</dimen>
+</resources>
