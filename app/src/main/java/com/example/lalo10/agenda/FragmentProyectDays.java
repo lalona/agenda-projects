@@ -36,7 +36,7 @@ public class FragmentProyectDays extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(
-                R.layout.fragment_meta, container, false);
+                R.layout.fragment_proyect_dates, container, false);
         setOnClickDatesHandlers(rootView);
         return rootView;
     }

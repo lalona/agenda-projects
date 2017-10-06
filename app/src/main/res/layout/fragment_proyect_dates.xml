@@ -21,7 +21,8 @@
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_question_when"
-        android:text="@string/when" />
+        android:text="@string/when"
+        android:layout_marginBottom="@dimen/margin_question_goal"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/txtQuestionDate"

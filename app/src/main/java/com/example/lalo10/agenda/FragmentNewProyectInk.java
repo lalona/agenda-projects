@@ -44,6 +44,8 @@ public class FragmentNewProyectInk extends ActionBarActivity {
         //manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
         Fragment fragmentMeta = new FragmentMeta();
         manager.addFragment(fragmentMeta,getResources().getString(R.string.meta));
+        Fragment fragmentDates = new FragmentProyectDays();
+        manager.addFragment(fragmentDates,getResources().getString(R.string.dates));
 
         Fragment fragmentListDays = new FragmentListDays();
         manager.addFragment(fragmentListDays,getResources().getString(R.string.days));
