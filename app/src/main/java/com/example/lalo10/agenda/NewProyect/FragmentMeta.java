@@ -1,4 +1,4 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.lalo10.agenda.R;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -47,17 +49,5 @@ public class FragmentMeta extends Fragment {
         EditText txtMeta = (EditText)view.findViewById(R.id.editQuestionGoal);
         txtMeta.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
     }
-
-    private void addListenerToContinue(View view) {
-        Button btn = (Button) view.findViewById(R.id.btnContinue);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-    }
-
-
 
 }

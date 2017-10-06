@@ -1,4 +1,4 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

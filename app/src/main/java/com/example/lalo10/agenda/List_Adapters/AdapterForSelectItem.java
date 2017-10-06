@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.example.lalo10.agenda.DayId;
+import com.example.lalo10.agenda.NewProyect.DayId;
 import com.example.lalo10.agenda.R;
 
 import java.util.Arrays;

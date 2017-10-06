@@ -1,21 +1,15 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 /**
  * Created by lalo10 on 10/5/17.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.google.common.collect.Lists;
-
-import java.util.List;
+import com.example.lalo10.agenda.R;
 
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
@@ -49,6 +43,10 @@ public class FragmentNewProyectInk extends ActionBarActivity {
 
         Fragment fragmentListDays = new FragmentListDays();
         manager.addFragment(fragmentListDays,getResources().getString(R.string.days));
+
+        Fragment fragmentHours = new FragmentHours();
+        manager.addFragment(fragmentHours,getResources().getString(R.string.hours));
+
         ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
         viewPager.setAdapter(adapter);
         viewPager.fixScrollSpeed();

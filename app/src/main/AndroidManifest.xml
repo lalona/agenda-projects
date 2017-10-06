@@ -15,8 +15,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".FragmentNewProyect"/>
-        <activity android:name=".FragmentNewProyectInk"/>
+        <activity android:name=".NewProyect.FragmentNewProyect"/>
+        <activity android:name=".NewProyect.FragmentNewProyectInk"/>
     </application>
 
 

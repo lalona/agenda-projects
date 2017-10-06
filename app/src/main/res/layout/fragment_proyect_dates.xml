@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
 
@@ -24,78 +26,59 @@
         android:text="@string/when"
         android:layout_marginBottom="@dimen/margin_question_goal"/>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/txtQuestionDate"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+        android:layout_centerHorizontal="true"
+        >
             <TextView
                 android:id="@+id/txtDateStart"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/date_empty"
+                android:hint="@string/start"
                 android:textSize="@dimen/date_text_picked"
                 android:textAlignment="center"
                 />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnDateBegin"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/button_default"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/txtDateEnd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/date_empty"
-                android:textSize="@dimen/date_text_picked"
-                android:textAlignment="center"
+                app:srcCompat="@drawable/ic_date_start"
+                android:background="@drawable/circle_button"
                 />
 
-            <Button
-                android:id="@+id/btnDateEnd"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtDateEnd"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_default"
-                android:text="End"
+                android:hint="@string/end"
+                android:textSize="@dimen/date_text_picked"
+                android:textAlignment="center"
+                android:layout_marginEnd="@dimen/margin_calendar"
+                />
+            <ImageButton
+                android:id="@+id/btnDateEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:enabled="false"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
+                app:srcCompat="@drawable/ic_date_end"
+                android:background="@drawable/circle_button"
+                android:layout_marginEnd="@dimen/margin_calendar"
+                />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_default"
-        android:text="@string/cont"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"
-        />
+
+
 
 
 </RelativeLayout>

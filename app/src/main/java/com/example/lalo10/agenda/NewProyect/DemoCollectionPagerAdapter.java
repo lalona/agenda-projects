@@ -1,4 +1,4 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.lalo10.agenda.R;
 
 /**
  * Created by lalo10 on 8/11/17.

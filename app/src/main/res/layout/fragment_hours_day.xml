@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="@string/select_days_you_will_work"
+            android:text="@string/at_what_hours"
             android:inputType="textPersonName"
             android:textSize="@dimen/txt_select_days_you_will__work"/>
 
@@ -31,13 +31,5 @@
             android:divider="#FFFFFF"
             android:dividerHeight="1dip"
             android:layout_weight="10"/>
-        <Button
-            android:id="@+id/btnSelDesTodo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_default"
-            android:text="@string/mark_all"
-            android:textColor="@android:color/white" />
-
     </LinearLayout>
 </RelativeLayout>

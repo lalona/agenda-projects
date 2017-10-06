@@ -35,4 +35,10 @@
     <string name="days">Days</string>
     <string name="dates">Dates</string>
     <string name="hours">Hours</string>
+    <string name="at_what_hours">At what hours you plan to work</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="first_choose_from_hour">Choose from hour</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
 </resources>

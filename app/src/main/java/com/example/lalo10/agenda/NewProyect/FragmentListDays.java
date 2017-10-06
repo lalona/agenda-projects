@@ -1,8 +1,7 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.lalo10.agenda.List_Adapters.AdapterForSelectItem;
+import com.example.lalo10.agenda.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,8 @@ public class FragmentListDays extends ListFragment {
     private DayId[] days;
     private List<DayId> daysSelected;
 
+    NewProjectData newProjectData;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,8 @@ public class FragmentListDays extends ListFragment {
         selecciona = true;
         days = DayId.getArrayDays(getActivity());
         daysSelected = new ArrayList<>();
+        newProjectData = NewProjectData.getInstance(getActivity());
+        newProjectData.setDaysSelected(daysSelected);
 
     }
 
@@ -86,6 +90,7 @@ public class FragmentListDays extends ListFragment {
             //getGroups.remove(listView,position);
             daysSelected.remove(listView.getItemAtPosition(position));
             coloredItems.remove(currentName);
+
         }
         else {
             //add position to coloredItems
@@ -93,7 +98,9 @@ public class FragmentListDays extends ListFragment {
             coloredItems.add(currentName);
             //getGroups.add(position);
             daysSelected.add(((DayId)listView.getItemAtPosition(position)));
+
         }
+        this.newProjectData.setDaysSelected(daysSelected);
         adapterForSelectItem.setColoredItems(coloredItems);
     }
 
@@ -111,6 +118,7 @@ public class FragmentListDays extends ListFragment {
                     selecciona = true;
                     btnSAll.setText("+" + getResources().getString(R.string.all));
                 }
+                newProjectData.setDaysSelected(daysSelected);
             }
         });
     }
@@ -151,6 +159,7 @@ public class FragmentListDays extends ListFragment {
                 daysSelected.add(days[j]);
             }
         }
+
         adapterForSelectItem.setColoredItems(coloredItems);
     }
 

@@ -8,12 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +25,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.lalo10.agenda.NewProyect.FragmentNewProyectInk;
 
 import java.util.ArrayList;
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavItems.add(new NavItem(getString(R.string.my_moment), getString(R.string.what_you_should_b_d) , R.drawable.ic_time, new ListMenuClick() {
+        mNavItems.add(new NavItem(getString(R.string.my_moment), getString(R.string.what_you_should_b_d) , R.drawable.ic_time_proyect, new ListMenuClick() {
             @Override
             public void action(int position) {
                 selectItemFromDrawer(position);

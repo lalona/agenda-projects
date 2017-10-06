@@ -1,4 +1,4 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 /**
  * Created by andel on 8/21/17.
@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 import java.util.Calendar;
 
@@ -25,10 +26,12 @@ public class DatePickerFragment extends DialogFragment
 
     private static final String TAG = DatePickerFragment.class.getSimpleName();
 
+
     public void setup(Calendar calendar, DatePickerDialog.OnDateSetListener onDateSetListener){
         this.calendar = calendar;
         this.onDateSetListener = onDateSetListener;
         this.minCalendar = calendar;
+
     }
 
     public void setup(Calendar calendar, Calendar minCalendar, DatePickerDialog.OnDateSetListener onDateSetListener){

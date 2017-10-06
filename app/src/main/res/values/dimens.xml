@@ -10,4 +10,7 @@
     <dimen name="txt_select_days_you_will__work">30sp</dimen>
     <dimen name="list_letter_size">20sp</dimen>
     <dimen name="margin_top_days_selection">30dp</dimen>
+    <dimen name="margin_calendar">5dp</dimen>
+    <dimen name="size_circle_button">50dp</dimen>
+    <dimen name="size_ic_date">40dp</dimen>
 </resources>

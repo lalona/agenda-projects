@@ -1,17 +1,19 @@
-package com.example.lalo10.agenda;
+package com.example.lalo10.agenda.NewProyect;
 
 import android.app.DatePickerDialog;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.lalo10.agenda.R;
 
 import java.util.Calendar;
 
@@ -41,15 +43,6 @@ public class FragmentProyectDays extends Fragment {
         return rootView;
     }
 
-    private void addListenerToContinue(View view) {
-        Button btn = (Button) view.findViewById(R.id.btnContinue);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-    }
 
     private DatePickerDialog.OnDateSetListener dpickerlistenerStart = new DatePickerDialog.OnDateSetListener() {
 
@@ -57,7 +50,7 @@ public class FragmentProyectDays extends Fragment {
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
             startDate = new Fechas(i,i1,i2);
             TextView txtFecha = (TextView)rootView.findViewById(R.id.txtDateStart);
-            Button btnEnd = (Button)rootView.findViewById(R.id.btnDateEnd);
+            ImageButton btnEnd = (ImageButton)rootView.findViewById(R.id.btnDateEnd);
             btnEnd.setEnabled(true);
             txtFecha.setText(startDate.toString());
         }
@@ -75,7 +68,7 @@ public class FragmentProyectDays extends Fragment {
     };
 
     private void setOnClickDatesHandlers(View view) {
-        Button btnStart = (Button)view.findViewById(R.id.btnDateBegin);
+        ImageButton btnStart = (ImageButton) view.findViewById(R.id.btnDateBegin);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +91,7 @@ public class FragmentProyectDays extends Fragment {
 
 
 
-        Button btnEnd = (Button)view.findViewById(R.id.btnDateEnd);
+        ImageButton btnEnd = (ImageButton)view.findViewById(R.id.btnDateEnd);
         btnEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
