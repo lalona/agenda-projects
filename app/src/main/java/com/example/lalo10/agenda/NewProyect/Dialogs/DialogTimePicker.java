@@ -47,6 +47,10 @@ public class DialogTimePicker extends DialogFragment implements TimePickerDialog
 
         } catch (NoTimeException e) {
             e.printStackTrace();
+            if(minTime != null) {
+                hour = minTime.get(Calendar.HOUR_OF_DAY);
+                minute = minTime.get(Calendar.MINUTE);
+            }
         }
 
         TimePickerDialogMinMax time = new TimePickerDialogMinMax(getActivity(), this, hour, minute,

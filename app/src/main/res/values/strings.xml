@@ -41,4 +41,9 @@
     <string name="first_choose_from_hour">Choose from hour</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+    <string name="question_want_to_save_project">Save project</string>
+    <string name="project_data_filled">Project data filled</string>
 </resources>

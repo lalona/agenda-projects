@@ -13,6 +13,7 @@ import com.example.lalo10.agenda.List_Adapters.AdapterForSelectItem;
 import com.example.lalo10.agenda.List_Adapters.AdapterHourFromTo;
 import com.example.lalo10.agenda.R;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,12 +32,14 @@ public class FragmentHours extends ListFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         newProjectData = NewProjectData.getInstance(getActivity());
-        daysSelected = newProjectData.getDaysSelected();
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_hours_day, container, false);
         setRetainInstance(true);
+        newProjectData.subscribe(NewProjectData.PHASE.HOURS,this);
+        daysSelected = newProjectData.getDaysSelected();
         return rootView;
     }
 
@@ -47,8 +50,17 @@ public class FragmentHours extends ListFragment {
         if(listView.getAdapter() == null) {
             adapterHourFromTo = new AdapterHourFromTo(this,getActivity(),R.layout.item_day_hour,daysSelected);
             listView.setAdapter(adapterHourFromTo);
+        } else {
+            adapterHourFromTo.notifyDataSetChanged();
         }
         //registerForContextMenu(listView);
+    }
+
+    public void setDaysSelected(List<DayId> ds) {
+        this.daysSelected = ds;
+        Collections.sort(this.daysSelected, new DayId());
+        adapterHourFromTo.updateList(ds);
+        newProjectData.setDaysSelectedAvoidStackOverFlow(this.daysSelected);
     }
 
 }

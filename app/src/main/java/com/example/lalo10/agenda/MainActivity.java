@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavItems.add(new NavItem(getString(R.string.my_moment), getString(R.string.what_you_should_b_d) , R.drawable.ic_time_proyect, new ListMenuClick() {
+        mNavItems.add(new NavItem(getString(R.string.my_moment), getString(R.string.what_you_should_b_d) , R.drawable.ic_time, new ListMenuClick() {
             @Override
             public void action(int position) {
                 selectItemFromDrawer(position);

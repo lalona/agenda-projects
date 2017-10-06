@@ -31,13 +31,15 @@
             android:divider="#FFFFFF"
             android:dividerHeight="1dip"
             android:layout_weight="10"/>
+
         <Button
             android:id="@+id/btnSelDesTodo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_default"
+            android:background="@drawable/circle_button"
             android:text="@string/mark_all"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
 
     </LinearLayout>
 </RelativeLayout>

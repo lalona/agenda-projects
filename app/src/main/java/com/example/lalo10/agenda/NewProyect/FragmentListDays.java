@@ -23,7 +23,7 @@ public class FragmentListDays extends ListFragment {
 
     /* Guardo la actividad en la que se agrega este fragmento */
     private static ListView listView;
-    private List<String> coloredItems = new ArrayList<>();
+    private List<String> coloredItems;
     //private String banderaModo;
     private Button btnSAll;
     private static final String TAG = FragmentListDays.class.getSimpleName();
@@ -48,14 +48,13 @@ public class FragmentListDays extends ListFragment {
         //appearList = null;
         selecciona = true;
         days = DayId.getArrayDays(getActivity());
-        daysSelected = new ArrayList<>();
         newProjectData = NewProjectData.getInstance(getActivity());
-        newProjectData.setDaysSelected(daysSelected);
-
+        //newProjectData.setDaysSelected(daysSelected);
+        daysSelected = newProjectData.getDaysSelected();
+        coloredItems = newProjectData.getColoredItems();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_days_week_selection, container, false);
         setRetainInstance(true);
         return rootView;
@@ -72,7 +71,6 @@ public class FragmentListDays extends ListFragment {
             listView.setAdapter(adapterForSelectItem);
             if (!coloredItems.isEmpty())
                 adapterForSelectItem.setColoredItems(coloredItems);
-
         }
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE); //para que pueda escoger varios
         listView.setItemsCanFocus(true);
@@ -101,6 +99,7 @@ public class FragmentListDays extends ListFragment {
 
         }
         this.newProjectData.setDaysSelected(daysSelected);
+        newProjectData.setColoredItems(coloredItems);
         adapterForSelectItem.setColoredItems(coloredItems);
     }
 
@@ -119,6 +118,7 @@ public class FragmentListDays extends ListFragment {
                     btnSAll.setText("+" + getResources().getString(R.string.all));
                 }
                 newProjectData.setDaysSelected(daysSelected);
+                newProjectData.setColoredItems(coloredItems);
             }
         });
     }

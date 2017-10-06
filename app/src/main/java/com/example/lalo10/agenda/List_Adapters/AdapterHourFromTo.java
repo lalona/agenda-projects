@@ -43,6 +43,12 @@ public class AdapterHourFromTo extends ArrayAdapter<DayId> {
         EditText toTime;
     }
 
+    public void updateList(List<DayId> listP) {
+        this.listDays = listP;
+        this.notifyDataSetChanged();
+
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolderFromTo holder;
@@ -81,7 +87,7 @@ public class AdapterHourFromTo extends ArrayAdapter<DayId> {
                     newFragment.show(fragment.getFragmentManager(), "timePicker");
                 } catch (NoTimeException e) {
                     // Mostras dialogo de que debe escoger primero la hora de inicio
-                    holder.toTime.setText(activity.getResources().getString(R.string.first_choose_from_hour));
+                    holder.toTime.setHint(activity.getResources().getString(R.string.first_choose_from_hour));
                 }
             }
         });
@@ -93,6 +99,10 @@ public class AdapterHourFromTo extends ArrayAdapter<DayId> {
             holder.fromTime.setText(from);
         } catch (NoTimeException e) {
             e.printStackTrace();
+            holder.toTime.setHint(activity.getResources().getString(R.string.to));
+            holder.fromTime.setHint(activity.getResources().getString(R.string.from));
+            holder.toTime.setText("");
+            holder.fromTime.setText("");
         }
         return convertView;
 

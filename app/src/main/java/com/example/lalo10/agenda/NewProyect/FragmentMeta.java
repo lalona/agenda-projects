@@ -7,7 +7,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +30,12 @@ import java.util.Date;
 public class FragmentMeta extends Fragment {
 
     View rootView;
+    NewProjectData newProjectData;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        newProjectData = NewProjectData.getInstance(getActivity());
     }
 
     @Nullable
@@ -42,12 +45,31 @@ public class FragmentMeta extends Fragment {
         rootView = inflater.inflate(
                 R.layout.fragment_meta, container, false);
         capitalizeFirstLetter(rootView);
+        setRetainInstance(true);
         return rootView;
     }
 
     private void capitalizeFirstLetter(View view) {
         EditText txtMeta = (EditText)view.findViewById(R.id.editQuestionGoal);
+        txtMeta.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                newProjectData.setGoal(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         txtMeta.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
     }
+
+
 
 }

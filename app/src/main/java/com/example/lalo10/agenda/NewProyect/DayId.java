@@ -7,12 +7,13 @@ import com.example.lalo10.agenda.NewProyect.Dialogs.ResponseFromDialogPicker;
 import com.example.lalo10.agenda.R;
 
 import java.util.Calendar;
+import java.util.Comparator;
 
 /**
  * Created by lalo10 on 10/5/17.
  */
 
-public class DayId implements ResponseFromDialogPicker{
+public class DayId implements ResponseFromDialogPicker,Comparator<DayId> {
     public String nombre;
     // Algo para guardar a que hora piensa trabajar
     Calendar fromHour;
@@ -29,6 +30,19 @@ public class DayId implements ResponseFromDialogPicker{
                 setToTime(hour,minutes,changeText);
                 break;
         }
+    }
+
+    public DayId() {}
+
+    @Override
+    public int compare(DayId dayId, DayId t1) {
+        if(dayId.id > t1.id)
+            return 1;
+        else if (dayId.id < t1.id)
+            return -1;
+        else
+            return 0;
+
     }
 
     public enum TYPE_HOUR {
