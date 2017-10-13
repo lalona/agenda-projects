@@ -1,6 +1,8 @@
 package com.example.lalo10.agenda.NewProyect;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by andel on 8/13/17.
@@ -9,6 +11,10 @@ import java.util.Calendar;
 public class Fechas {
 
     int year;
+    int month;
+    int day;
+    int minStartInDay;
+    int minStartEndDay;
 
     public int getYear() {
         return year;
@@ -35,8 +41,29 @@ public class Fechas {
         return calendar;
     }
 
-    int month;
-    int day;
+    public Fechas(Calendar date, Calendar fromHour, Calendar toHour) {
+
+    }
+
+    public String getStringFormat() {
+        Calendar c = this.getCalendar();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String formatted = format1.format(c.getTime());
+        return formatted;
+    }
+
+    public static void iterateThrougDates(Calendar init, Calendar end, DayIdHelper daysHelper) {
+
+        for(Calendar iDate = init; iDate.after(end); iDate.add(Calendar.DAY_OF_YEAR,1)) {
+            try {
+                DayId dayHours = daysHelper.getDayIfHas(iDate.get(Calendar.DAY_OF_WEEK));
+
+            } catch (ItDoesntHasDayException e) {
+                //No tenia el dia
+            }
+        }
+    }
+
 
     public Fechas(int year, int month, int day) {
         this.year = year;

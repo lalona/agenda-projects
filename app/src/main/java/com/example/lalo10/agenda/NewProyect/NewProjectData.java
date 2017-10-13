@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
+import com.example.lalo10.agenda.Database.Proyectos.ProyectAccessDatabase;
+import com.example.lalo10.agenda.Database.Proyectos.ProyectDBHelper;
 import com.example.lalo10.agenda.Dialogos.DialogsHelper;
 import com.example.lalo10.agenda.Dialogos.DialogsParameters;
 import com.example.lalo10.agenda.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -20,6 +24,8 @@ public class NewProjectData {
 
     private static NewProjectData onlyinstance;
     private Activity context;
+
+
 
     public List<String> getColoredItems() {
         if(coloredItems == null)
@@ -66,6 +72,16 @@ public class NewProjectData {
         return end;
     }
 
+    public String getEndString() {
+        return end.getStringFormat();
+    }
+
+    public String getStartString() {
+        return start.getStringFormat();
+    }
+
+
+
     Fechas start;
     Fechas end;
     List<DayId> daysSelected;
@@ -77,10 +93,12 @@ public class NewProjectData {
     public void setDaysSelected(List<DayId> daysSelected) {
         this.daysSelected = daysSelected;
         sendDaysToHours();
+        ifFinishAskIfSave();
     }
 
     public void setDaysSelectedAvoidStackOverFlow(List<DayId> daysSelected) {
         this.daysSelected = daysSelected;
+        ifFinishAskIfSave();
     }
 
     private void ifFinishAskIfSave() {
@@ -88,7 +106,8 @@ public class NewProjectData {
             DialogsHelper.showQuestionDialog(context, new DialogsParameters() {
                 @Override
                 public void yesCall() {
-
+                    ProyectAccessDatabase proyectAccessDatabase = new ProyectAccessDatabase(context);
+                    proyectAccessDatabase.insertInto(NewProjectData.this);
                 }
 
                 @Override
@@ -145,7 +164,20 @@ public class NewProjectData {
         if(daysSelected == null) {
             daysSelected = new ArrayList<>();
         }
+        ifFinishAskIfSave();
         return daysSelected;
+    }
+
+    public String getDaysSelectedBits() {
+        StringBuffer bits = new StringBuffer();
+        DayId[] allDays = DayId.getArrayDays(context);
+        for(int i = 0; i < allDays.length; i++) {
+            if(daysSelected.contains(allDays[i]))
+                bits.append(1); // Si el dia esta lo voy a activar
+            else
+                bits.append(0); // Si no es 0
+        }
+        return bits.toString();
     }
 
     private void sendDaysToHours() {
@@ -155,14 +187,17 @@ public class NewProjectData {
 
     public void setGoal(String goal) {
         this.goal = goal;
+        ifFinishAskIfSave();
     }
 
     public void setStart(Fechas start) {
         this.start = start;
+        ifFinishAskIfSave();
     }
 
     public void setEnd(Fechas end) {
         this.end = end;
+        ifFinishAskIfSave();
     }
 
 }

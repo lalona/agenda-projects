@@ -3,8 +3,10 @@ package com.example.lalo10.agenda.NewProyect;
 import android.app.DatePickerDialog;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lalo10.agenda.R;
 
@@ -76,6 +79,8 @@ public class FragmentProyectDays extends Fragment {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
             endDate = new Fechas(i,i1,i2);
+            String m = "Day of week: " + endDate.getCalendar().get(Calendar.DAY_OF_WEEK);
+            Log.d("F",m);
             newProjectData.setEnd(endDate);
             setEndDateText();
 

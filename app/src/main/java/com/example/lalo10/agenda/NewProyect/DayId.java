@@ -142,4 +142,15 @@ public class DayId implements ResponseFromDialogPicker,Comparator<DayId> {
         return fromHour;
     }
 
+    @Override
+    public boolean equals(Object v) {
+        boolean retVal = false;
+
+        if (v instanceof DayId){
+            DayId ptr = (DayId) v;
+            retVal = ptr.id == this.id;
+        }
+        return retVal;
+    }
+
 }
