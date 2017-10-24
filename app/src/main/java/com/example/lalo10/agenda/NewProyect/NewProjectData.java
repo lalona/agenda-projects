@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
+import com.example.lalo10.agenda.Database.Proyectos.GoalsDBDAO;
 import com.example.lalo10.agenda.Database.Proyectos.ProyectAccessDatabase;
 import com.example.lalo10.agenda.Database.Proyectos.ProyectDBHelper;
 import com.example.lalo10.agenda.Dialogos.DialogsHelper;
@@ -103,11 +104,10 @@ public class NewProjectData {
 
     private void ifFinishAskIfSave() {
         if(checkIfCompleted())
-            DialogsHelper.showQuestionDialog(context, new DialogsParameters() {
+            DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
                 @Override
                 public void yesCall() {
-                    ProyectAccessDatabase proyectAccessDatabase = new ProyectAccessDatabase(context);
-                    proyectAccessDatabase.insertInto(NewProjectData.this);
+
                 }
 
                 @Override

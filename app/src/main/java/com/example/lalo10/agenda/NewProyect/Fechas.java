@@ -87,7 +87,7 @@ public class Fechas {
     public Calendar getMaxCalendar() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year,month,day);
-        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        calendar.add(Calendar.DATE, -1);
         return calendar;
     }
 }

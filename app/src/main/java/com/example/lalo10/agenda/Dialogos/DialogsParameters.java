@@ -8,6 +8,10 @@ import android.app.Activity;
  */
 
 public abstract class DialogsParameters {
+    public Activity activity;
+    public DialogsParameters(Activity activity) {
+        this.activity = activity;
+    }
     public abstract void yesCall();
     public abstract void noCall();
     public abstract int getMessage();
