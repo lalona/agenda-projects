@@ -32,6 +32,7 @@ public class DayId implements ResponseFromDialogPicker,Comparator<DayId> {
         }
     }
 
+
     public DayId() {}
 
     @Override
@@ -58,13 +59,13 @@ public class DayId implements ResponseFromDialogPicker,Comparator<DayId> {
     public static DayId[] getArrayDays(Context context) {
         // 7 porque los dias de la semana nunca van a cambiar y si cambian que perro
         return  new DayId[] {
-                new DayId(context.getResources().getString(R.string.DOMINGO),  0),
-                new DayId(context.getResources().getString(R.string.LUNES),    1),
-                new DayId(context.getResources().getString(R.string.MARTES),   2),
-                new DayId(context.getResources().getString(R.string.MIERCOLES),3),
-                new DayId(context.getResources().getString(R.string.JUEVES),   4),
-                new DayId(context.getResources().getString(R.string.VIERNES),  5),
-                new DayId(context.getResources().getString(R.string.SABADO),   6)
+                new DayId(context.getResources().getString(R.string.DOMINGO)   , Calendar.SUNDAY),
+                new DayId(context.getResources().getString(R.string.LUNES)   , Calendar.MONDAY),
+                new DayId(context.getResources().getString(R.string.MARTES)  , Calendar.TUESDAY),
+                new DayId(context.getResources().getString(R.string.MIERCOLES), Calendar.WEDNESDAY),
+                new DayId(context.getResources().getString(R.string.JUEVES) , Calendar.THURSDAY),
+                new DayId(context.getResources().getString(R.string.VIERNES)   , Calendar.FRIDAY),
+                new DayId(context.getResources().getString(R.string.SABADO) , Calendar.SATURDAY)
         };
     }
 

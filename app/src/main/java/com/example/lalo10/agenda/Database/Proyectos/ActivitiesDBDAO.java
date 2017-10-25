@@ -28,6 +28,7 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
         values.put(DataBaseHelper.DATE_ACTS, activity.getDateString());
         values.put(DataBaseHelper.HORA_INI_ACTS, activity.getFromHourInMin());
         values.put(DataBaseHelper.HORA_FIN_ACTS, activity.getToHourInMin());
+        values.put(DataBaseHelper.POR_ACCOMPLISH_ACTS, activity.getPorAccomplish());
         values.put(DataBaseHelper.ID_GOALS, activity.getGoalProyectId());
         return database.insert(DataBaseHelper.ACTIVITIES_TABLE, null, values);
     }
@@ -38,6 +39,7 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
         values.put(DataBaseHelper.HORA_INI_ACTS, activity.getFromHourInMin());
         values.put(DataBaseHelper.HORA_FIN_ACTS, activity.getToHourInMin());
         values.put(DataBaseHelper.ID_GOALS, activity.getGoalProyectId());
+        values.put(DataBaseHelper.POR_ACCOMPLISH_ACTS, activity.getPorAccomplish());
         long result = database.update(DataBaseHelper.ACTIVITIES_TABLE, values,
                 WHERE_ID_EQUALS,
                 new String[] { String.valueOf(activity.getId()) });
@@ -55,7 +57,9 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
                 new String[] { DataBaseHelper.ID_ACTS,
                         DataBaseHelper.DATE_ACTS,
                         DataBaseHelper.HORA_INI_ACTS,
-                        DataBaseHelper.HORA_FIN_ACTS}, null, null, null, null,
+                        DataBaseHelper.HORA_FIN_ACTS,
+                        DataBaseHelper.POR_ACCOMPLISH_ACTS,
+                        }, null, null, null, null,
                 null);
 
         while (cursor.moveToNext()) {
@@ -64,6 +68,7 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
             activity.setDate(cursor.getString(1));
             activity.setFromHour(cursor.getInt(2));
             activity.setToHour(cursor.getInt(3));
+            activity.setPorAccomplish(cursor.getInt(4));
             activities.add(activity);
         }
         return activities;

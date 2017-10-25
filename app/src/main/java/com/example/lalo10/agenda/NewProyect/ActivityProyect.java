@@ -20,6 +20,15 @@ public class ActivityProyect {
     private int porAccomplish;
     private GoalProyect goalProyect;
 
+    public ActivityProyect() {}
+
+    public ActivityProyect(DayId dayId, Calendar date, long idGoalProyect) {
+        this.fromHour = dayId.fromHour;
+        this.toHour = dayId.toHour;
+        this.date = date;
+        this.porAccomplish = 0;
+        this.goalProyect = new GoalProyect(idGoalProyect);
+    }
 
     public int getId() {
         return idActivity;
@@ -65,7 +74,7 @@ public class ActivityProyect {
         return goalProyect;
     }
 
-    public int getGoalProyectId() {
+    public long getGoalProyectId() {
         return goalProyect.getId();
     }
 

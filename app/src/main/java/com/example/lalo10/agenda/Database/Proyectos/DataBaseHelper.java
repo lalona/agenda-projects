@@ -29,6 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String DATE_ACTS = "date_activities"; // it ends in activities just because can be ambiguous
     public static final String HORA_INI_ACTS = "hora_ini_min";
     public static final String HORA_FIN_ACTS = "hora_ini_fin";
+    public static final String POR_ACCOMPLISH_ACTS = "por_accomp_act";
     //FK ID_GOALS = ID_GOALS
 
     public static final String CREATE_GOALS_TABLE = "CREATE TABLE "
@@ -39,8 +40,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_ACTIVITIES_TABLE = "CREATE TABLE "
             + ACTIVITIES_TABLE + "(" + ID_ACTS + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + DATE_ACTS +" TEXT, "
-            + HORA_INI_ACTS + "INT,"+ HORA_FIN_ACTS +" INT, "
-            + "FOREIGN_KEY ("+ID_GOALS+") REFERENCES "  + GOALS_TABLE
+            + HORA_INI_ACTS + " INT,"+ HORA_FIN_ACTS +" INT, "
+            + POR_ACCOMPLISH_ACTS + " INT,"
+            + ID_GOALS + " INT,"
+            + "FOREIGN KEY ("+ID_GOALS+") REFERENCES "  + GOALS_TABLE
             + "( " + ID_GOALS +  ") )";
 
     private static DataBaseHelper instance;

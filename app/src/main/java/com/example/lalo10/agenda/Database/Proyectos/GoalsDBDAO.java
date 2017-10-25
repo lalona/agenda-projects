@@ -59,8 +59,8 @@ public class GoalsDBDAO extends ProyectManagementDAO {
                 null);
 
         while (cursor.moveToNext()) {
-            GoalProyect goal = new GoalProyect();
-            goal.setId(cursor.getInt(0));
+            GoalProyect goal = new GoalProyect(cursor.getInt(0));
+            //goal.setId(cursor.getInt(0));
             goal.setStart(cursor.getString(1));
             goal.setEnd(cursor.getString(2));
             goals.add(goal);

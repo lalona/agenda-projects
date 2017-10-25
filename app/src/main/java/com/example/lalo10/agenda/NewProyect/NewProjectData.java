@@ -3,6 +3,7 @@ package com.example.lalo10.agenda.NewProyect;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.example.lalo10.agenda.Database.Proyectos.GoalsDBDAO;
 import com.example.lalo10.agenda.Database.Proyectos.ProyectAccessDatabase;
@@ -107,6 +108,10 @@ public class NewProjectData {
             DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
                 @Override
                 public void yesCall() {
+                    if(GoalProyect.createGoalAndActivities(activity,NewProjectData.getInstance(activity)))
+                        Log.d("NEWPROJECTDAT","Lo guardo");
+                    else
+                        Log.d("NEWPROJECTDAT","No lo guardo");
 
                 }
 

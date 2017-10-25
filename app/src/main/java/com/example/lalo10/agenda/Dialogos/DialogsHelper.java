@@ -24,12 +24,14 @@ public class DialogsHelper {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialogsParameters.yesCall();
+                        dialog.cancel();
                     }
                 })
                 .setNegativeButton(R.string.no,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialogsParameters.noCall();
+                        dialog.cancel();
                     }
                 }) ;
         AlertDialog alert = a_builder.create();
