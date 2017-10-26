@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.example.lalo10.agenda.NewProyect.DayId;
+import com.example.lalo10.agenda.NewProyect.NewProjectData;
 import com.example.lalo10.agenda.NewProyect.NoTimeException;
 
 import java.util.Calendar;
@@ -71,6 +72,8 @@ public class DialogTimePicker extends DialogFragment implements TimePickerDialog
     public void onTimeSet(TimePicker timePicker, int hour, int minutes) {
         // Do something with the time picked by user
         this.day.timePicked(typeHour,hour,minutes,changeText);
+        NewProjectData newProjectData = NewProjectData.getInstance(getActivity());
+        newProjectData.ifFinishAskIfSave();
     }
 
     public void setMinTime(Calendar minTime) {

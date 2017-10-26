@@ -19,6 +19,10 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
     private static final String WHERE_ID_EQUALS = DataBaseHelper.ID_ACTS
             + " = ?";
 
+    private static final String WHERE_FK_ID_EQUALS = DataBaseHelper.ID_GOALS
+            + " = ?";
+
+
     public ActivitiesDBDAO(Context context) {
         super(context);
     }
@@ -72,5 +76,11 @@ public class ActivitiesDBDAO extends ProyectManagementDAO {
             activities.add(activity);
         }
         return activities;
+    }
+
+    public int deleteAllActiviedFrom(long idGoal) {
+        return database.delete(DataBaseHelper.ACTIVITIES_TABLE,
+                WHERE_FK_ID_EQUALS, new String[] { idGoal + "" });
+
     }
 }

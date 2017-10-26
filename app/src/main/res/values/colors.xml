@@ -16,6 +16,9 @@
     <color name="list_normal">#ffffff</color>
     <color name="first_fragment_viewpager1">#f6fff1</color>
     <color name="first_fragment_viewpager2">#f4ecff</color>
+    <color name="floating_button">#ff8d0b</color>
+    <color name="floating_button2">#fdfaa33e</color>
+    <color name="floating_button_save_svg">#ffffff</color>
 
 
 </resources>

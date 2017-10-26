@@ -75,6 +75,7 @@ public class FragmentListDays extends ListFragment {
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE); //para que pueda escoger varios
         listView.setItemsCanFocus(true);
         registerForContextMenu(listView);
+        new CommonListeners().listenerForSave(getActivity(),rootView);
     }
 
 

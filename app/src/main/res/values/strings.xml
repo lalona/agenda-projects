@@ -46,4 +46,13 @@
     <string name="ok">Ok</string>
     <string name="question_want_to_save_project">Save project</string>
     <string name="project_data_filled">Project data filled</string>
+    <string name="complete_all_needed_fields">Complete all needed fields</string>
+    <string name="canot_save">Can\'t save</string>
+    <string name="choose_to_hour">Choose an hour</string>
+    <string name="you_want_to_change_som">Do you want to edit the project?</string>
+    <string name="edit">Edit</string>
+    <string name="save_fail">The save fail</string>
+    <string name="error">Error</string>
+    <string name="save_changes">Save changes</string>
+    <string name="question_want_to_save_changes_project">Want to save changes?</string>
 </resources>

@@ -23,8 +23,8 @@ public class DialogsHelper {
                 .setPositiveButton(R.string.yes,new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialogsParameters.yesCall();
-                        dialog.cancel();
+                        dialogsParameters.yesCall(dialog);
+                        //dialog.cancel();
                     }
                 })
                 .setNegativeButton(R.string.no,new DialogInterface.OnClickListener() {

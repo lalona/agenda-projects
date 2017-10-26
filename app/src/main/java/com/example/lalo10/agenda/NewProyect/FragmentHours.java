@@ -43,6 +43,8 @@ public class FragmentHours extends ListFragment {
         return rootView;
     }
 
+
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -53,6 +55,7 @@ public class FragmentHours extends ListFragment {
         } else {
             adapterHourFromTo.notifyDataSetChanged();
         }
+        new CommonListeners().listenerForSave(getActivity(),rootView);
         //registerForContextMenu(listView);
     }
 

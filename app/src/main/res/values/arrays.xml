@@ -6,4 +6,11 @@
         <item>@color/indicator_3</item>
         <item>@color/indicator_4</item>
     </array>
+    <array name="indicator_colors2">
+        <item>@color/floating_button2</item>
+        <item>@color/floating_button2</item>
+        <item>@color/floating_button2</item>
+        <item>@color/floating_button2</item>
+    </array>
+
 </resources>

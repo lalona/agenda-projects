@@ -9,8 +9,11 @@
     <dimen name="text_question_when">55sp</dimen>
     <dimen name="txt_select_days_you_will__work">30sp</dimen>
     <dimen name="list_letter_size">20sp</dimen>
-    <dimen name="margin_top_days_selection">30dp</dimen>
+    <dimen name="margin_top_days_selection">36dp</dimen>
     <dimen name="margin_calendar">5dp</dimen>
     <dimen name="size_circle_button">50dp</dimen>
     <dimen name="size_ic_date">40dp</dimen>
+    <dimen name="button_elevation_material">6dp</dimen>
+    <dimen name="button_pressed_z_material">6dp</dimen>
+
 </resources>

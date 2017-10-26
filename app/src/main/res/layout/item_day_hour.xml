@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:weightSum="3">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
 
     <TextView
         android:id="@+id/txtDay"
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="@dimen/list_letter_size"/>
@@ -15,7 +18,7 @@
         android:id="@+id/timeFrom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:ems="10"
         android:hint="@string/from"
         android:inputType="time" android:focusable="false"/>
@@ -24,10 +27,18 @@
         android:id="@+id/timeTo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:ems="10"
         android:hint="@string/to"
         android:inputType="time" android:focusable="false"/>
+
+    <ImageButton
+        android:id="@+id/btnCopyPaste"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:stateListAnimator="@animator/anim_btn_click"
+         />
 
 
 </LinearLayout>

@@ -49,6 +49,11 @@ public class FragmentProyectDays extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        new CommonListeners().listenerForSave(getActivity(),rootView);
+    }
 
     private DatePickerDialog.OnDateSetListener dpickerlistenerStart = new DatePickerDialog.OnDateSetListener() {
 

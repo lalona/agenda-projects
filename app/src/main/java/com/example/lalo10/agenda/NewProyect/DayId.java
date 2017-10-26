@@ -96,6 +96,28 @@ public class DayId implements ResponseFromDialogPicker,Comparator<DayId> {
         }
     }
 
+    public void setFromHour(Calendar fromHour) {
+        this.fromHour = fromHour;
+    }
+
+    public void setToHour(Calendar toHour) {
+        this.toHour = toHour;
+    }
+
+    public Calendar getFromHour() {
+        return fromHour;
+    }
+
+    public Calendar getToHour() {
+        return toHour;
+    }
+
+    public boolean hoursAreComplete() {
+        if(fromHour != null && toHour != null)
+            return true;
+        return false;
+    }
+
     public String getToTimeString() throws NoTimeException{
         return getTimeString(toHour);
     }

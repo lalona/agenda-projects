@@ -2,12 +2,14 @@ package com.example.lalo10.agenda.NewProyect;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.example.lalo10.agenda.Database.Proyectos.GoalsDBDAO;
 import com.example.lalo10.agenda.Database.Proyectos.ProyectAccessDatabase;
 import com.example.lalo10.agenda.Database.Proyectos.ProyectDBHelper;
+import com.example.lalo10.agenda.Dialogos.DialogsAlert;
 import com.example.lalo10.agenda.Dialogos.DialogsHelper;
 import com.example.lalo10.agenda.Dialogos.DialogsParameters;
 import com.example.lalo10.agenda.R;
@@ -26,7 +28,9 @@ public class NewProjectData {
 
     private static NewProjectData onlyinstance;
     private Activity context;
-
+    private boolean askOnlyOne;
+    private boolean saved;
+    private boolean clear;
 
 
     public List<String> getColoredItems() {
@@ -55,6 +59,14 @@ public class NewProjectData {
     public static NewProjectData getInstance(Activity context) {
         if(onlyinstance == null) {
             onlyinstance = new NewProjectData();
+            onlyinstance.askOnlyOne = true;
+            onlyinstance.saved = false;
+            onlyinstance.clear = false;
+        } else if(onlyinstance.clear){
+            onlyinstance = new NewProjectData();
+            onlyinstance.askOnlyOne = true;
+            onlyinstance.saved = false;
+            onlyinstance.clear = false;
         }
         onlyinstance.context = context;
         return onlyinstance;
@@ -103,37 +115,159 @@ public class NewProjectData {
         ifFinishAskIfSave();
     }
 
-    private void ifFinishAskIfSave() {
-        if(checkIfCompleted())
-            DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
-                @Override
-                public void yesCall() {
-                    if(GoalProyect.createGoalAndActivities(activity,NewProjectData.getInstance(activity)))
-                        Log.d("NEWPROJECTDAT","Lo guardo");
-                    else
-                        Log.d("NEWPROJECTDAT","No lo guardo");
+    public boolean trySave() {
+        return ifFinishAskIfSave(true);
+    }
 
-                }
+    public boolean ifFinishAskIfSave() { return ifFinishAskIfSave(askOnlyOne);}
 
-                @Override
-                public void noCall() {
+    public boolean ifFinishAskIfSave(boolean tryOnly1) {
+        if(!tryOnly1)
+            return false;
+        if(checkIfCompleted()) {
+            if(this.saved) {
+                DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
+                    @Override
+                    public void yesCall(final DialogInterface dialog) {
+                        if (GoalProyect.createGoalAndActivities(activity, NewProjectData.getInstance(activity))) {
+                            Log.d("NEWPROJECTDAT", "Lo guardo");
+                            dialog.cancel();
+                            afterSaved(activity);
+                        } else {
+                            Log.d("NEWPROJECTDAT", "No lo guardo");
+                            dialog.cancel();
+                            DialogsHelper.showAlert(activity, new DialogsAlert() {
+                                @Override
+                                public int getMessage() {
+                                    return R.string.save_fail;
+                                }
 
-                }
+                                @Override
+                                public int getTitle() {
+                                    return R.string.error;
+                                }
 
-                @Override
-                public int getMessage() {
-                    return R.string.question_want_to_save_project;
-                }
+                                @Override
+                                public void actionAfterOk() {
 
-                @Override
-                public int getTitle() {
-                    return R.string.project_data_filled;
-                }
-            });
+                                }
+                            });
+                        }
+
+
+                    }
+
+                    @Override
+                    public void noCall() {
+
+                    }
+
+                    @Override
+                    public int getMessage() {
+                        return R.string.question_want_to_save_project;
+                    }
+
+                    @Override
+                    public int getTitle() {
+                        return R.string.project_data_filled;
+                    }
+                });
+                askOnlyOne = false;
+                return true;
+            } else {
+                DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
+                    @Override
+                    public void yesCall(final DialogInterface dialog) {
+                        if (GoalProyect.saveChanges(activity, NewProjectData.getInstance(activity))) {
+                            Log.d("NEWPROJECTDAT", "Lo guardo");
+                            dialog.cancel();
+                            afterSaved(activity);
+                        } else {
+                            Log.d("NEWPROJECTDAT", "No lo guardo");
+                            dialog.cancel();
+                            DialogsHelper.showAlert(activity, new DialogsAlert() {
+                                @Override
+                                public int getMessage() {
+                                    return R.string.save_fail;
+                                }
+
+                                @Override
+                                public int getTitle() {
+                                    return R.string.error;
+                                }
+
+                                @Override
+                                public void actionAfterOk() {
+
+                                }
+                            });
+                        }
+
+
+                    }
+
+                    @Override
+                    public void noCall() {
+
+                    }
+
+                    @Override
+                    public int getMessage() {
+                        return R.string.question_want_to_save_changes_project;
+                    }
+
+                    @Override
+                    public int getTitle() {
+                        return R.string.save_changes;
+                    }
+                });
+            }
+        }
+        return false;
+    }
+
+    private void afterSaved(Activity activity) {
+        DialogsHelper.showQuestionDialog(activity, new DialogsParameters(activity) {
+
+            @Override
+            public int getMessage() {
+                return R.string.you_want_to_change_som;
+            }
+
+            @Override
+            public int getTitle() {
+                return R.string.edit;
+            }
+
+            @Override
+            public void yesCall(DialogInterface dialog) {
+                NewProjectData newProjectData = NewProjectData.getInstance(activity);
+                newProjectData.saved();
+                dialog.cancel();
+            }
+
+            @Override
+            public void noCall() {
+                NewProjectData newProjectData = NewProjectData.getInstance(activity);
+                newProjectData.finish();
+                activity.finish();
+            }
+        });
+    }
+
+    public void saved() {
+        this.saved = true;
+    }
+
+    public void finish() {
+        this.clear = true;
+        NewProjectData newProjectData = NewProjectData.getInstance(context);
     }
 
     private boolean checkIfCompleted() {
         if(goal == null)
+            return false;
+        if(goal.isEmpty())
             return false;
         if(daysSelected == null)
             return false;
