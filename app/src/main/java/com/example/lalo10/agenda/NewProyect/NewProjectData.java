@@ -125,11 +125,11 @@ public class NewProjectData {
         if(!tryOnly1)
             return false;
         if(checkIfCompleted()) {
-            if(this.saved) {
+            if(!this.saved) {
                 DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
                     @Override
                     public void yesCall(final DialogInterface dialog) {
-                        if (GoalProyect.createGoalAndActivities(activity, NewProjectData.getInstance(activity))) {
+                        if (SaveProyectHelper.createGoalAndActivities(activity, NewProjectData.getInstance(activity))) {
                             Log.d("NEWPROJECTDAT", "Lo guardo");
                             dialog.cancel();
                             afterSaved(activity);
@@ -178,7 +178,7 @@ public class NewProjectData {
                 DialogsHelper.showQuestionDialog(context, new DialogsParameters(context) {
                     @Override
                     public void yesCall(final DialogInterface dialog) {
-                        if (GoalProyect.saveChanges(activity, NewProjectData.getInstance(activity))) {
+                        if (SaveProyectHelper.saveChanges(activity, NewProjectData.getInstance(activity))) {
                             Log.d("NEWPROJECTDAT", "Lo guardo");
                             dialog.cancel();
                             afterSaved(activity);
@@ -222,6 +222,7 @@ public class NewProjectData {
                     }
                 });
             }
+            return true;
         }
         return false;
     }
@@ -253,6 +254,10 @@ public class NewProjectData {
                 activity.finish();
             }
         });
+    }
+
+    public boolean isEditing() {
+        return this.saved;
     }
 
     public void saved() {

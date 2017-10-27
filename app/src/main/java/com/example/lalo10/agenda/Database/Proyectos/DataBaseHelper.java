@@ -15,6 +15,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String GOALS_TABLE = "goals";
     public static final String ACTIVITIES_TABLE = "activities";
+    public static final String WORK_DAYS_TABLE = "work_days";
 
     /* [NAME OF FIELD]_[NAME OF TABLE] */
 
@@ -30,6 +31,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String HORA_INI_ACTS = "hora_ini_min";
     public static final String HORA_FIN_ACTS = "hora_ini_fin";
     public static final String POR_ACCOMPLISH_ACTS = "por_accomp_act";
+    public static final String FROM_EXACT_TIME_MIL = "from_exact_time";
+    public static final String TO_EXACT_TIME_MIL = "to_exact_time";
+
+    // TABLE WORK DAYS
+    public static final String ID_WORK_DAYS = "id_work_day";
+    public static final String NUM_DAY_WORK_DAYS = "num_day_work_days";
+    public static final String HORA_INI_WORK_DAYS = "hora_ini_min_work_days";
+    public static final String HORA_FIN_WORK_DAYS = "hora_ini_fin_work_days";
+
     //FK ID_GOALS = ID_GOALS
 
     public static final String CREATE_GOALS_TABLE = "CREATE TABLE "
@@ -40,8 +50,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_ACTIVITIES_TABLE = "CREATE TABLE "
             + ACTIVITIES_TABLE + "(" + ID_ACTS + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + DATE_ACTS +" TEXT, "
-            + HORA_INI_ACTS + " INT,"+ HORA_FIN_ACTS +" INT, "
-            + POR_ACCOMPLISH_ACTS + " INT,"
+            + HORA_INI_ACTS + " INTEGER,"+ HORA_FIN_ACTS +" INTEGER, "
+            + POR_ACCOMPLISH_ACTS + " INTEGER,"
+            + FROM_EXACT_TIME_MIL + " INTEGER,"
+            + TO_EXACT_TIME_MIL + " INTEGER,"
             + ID_GOALS + " INT,"
             + "FOREIGN KEY ("+ID_GOALS+") REFERENCES "  + GOALS_TABLE
             + "( " + ID_GOALS +  ") )";

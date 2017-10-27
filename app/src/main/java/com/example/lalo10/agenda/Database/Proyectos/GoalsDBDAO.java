@@ -65,6 +65,7 @@ public class GoalsDBDAO extends ProyectManagementDAO {
             goal.setEnd(cursor.getString(2));
             goals.add(goal);
         }
+        cursor.close();
         return goals;
     }
 }

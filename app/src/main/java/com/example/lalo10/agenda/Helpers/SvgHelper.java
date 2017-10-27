@@ -24,4 +24,17 @@ public class SvgHelper {
             b.setImageDrawable(drawable);
     }
 
+    public static void setIcon(Activity activity, int resourceDrawable, ImageButton b,int resourceColor) {
+        Drawable drawable;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            drawable = activity.getResources().getDrawable(resourceDrawable, activity.getTheme());
+        } else {
+            drawable = VectorDrawableCompat.create(activity.getResources(), resourceDrawable, activity.getTheme());
+        }
+        if(b != null) {
+            b.setColorFilter(activity.getResources().getColor(resourceColor));
+            b.setImageDrawable(drawable);
+        }
+    }
+
 }

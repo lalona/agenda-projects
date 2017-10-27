@@ -20,14 +20,44 @@ public class ActivityProyect {
     private int porAccomplish;
     private GoalProyect goalProyect;
 
+    private long fromTimeInMil;
+
+    public long getFromTimeInMil() {
+        return fromTimeInMil;
+    }
+
+    public void setFromTimeInMil(long fromTimeInMil) {
+        this.fromTimeInMil = fromTimeInMil;
+    }
+
+    public long getToTimeInMil() {
+        return toTimeInMil;
+    }
+
+    public void setToTimeInMil(long toTimeInMil) {
+        this.toTimeInMil = toTimeInMil;
+    }
+
+    private long toTimeInMil;
+
     public ActivityProyect() {}
 
     public ActivityProyect(DayId dayId, Calendar date, long idGoalProyect) {
         this.fromHour = dayId.fromHour;
         this.toHour = dayId.toHour;
         this.date = date;
+        this.fromTimeInMil = createTimeInMil(this.date,this.fromHour);
+        this.fromTimeInMil = createTimeInMil(this.date,this.toHour);
         this.porAccomplish = 0;
         this.goalProyect = new GoalProyect(idGoalProyect);
+    }
+
+    private long createTimeInMil(Calendar date, Calendar hour) {
+        Calendar dateHourExact = date;
+        dateHourExact.set(Calendar.MINUTE,hour.get(Calendar.MINUTE));
+        dateHourExact.set(Calendar.HOUR_OF_DAY,hour.get(Calendar.HOUR_OF_DAY));
+        dateHourExact.set(Calendar.SECOND,0);
+        return dateHourExact.getTimeInMillis();
     }
 
     public int getId() {
