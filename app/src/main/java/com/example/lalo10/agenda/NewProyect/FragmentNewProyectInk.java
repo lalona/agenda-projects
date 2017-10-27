@@ -48,6 +48,9 @@ public class FragmentNewProyectInk extends ActionBarActivity {
         Fragment fragmentHours = new FragmentHours();
         manager.addFragment(fragmentHours,getResources().getString(R.string.hours));
 
+        Fragment fragmentCalendarConflicts = new FragmentCalendarAct();
+        manager.addFragment(fragmentCalendarConflicts,getResources().getString(R.string.calendar));
+
         ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
         viewPager.setAdapter(adapter);
         viewPager.fixScrollSpeed();

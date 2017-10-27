@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/rl_item_cal_act">
+
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/txtScheduleCalAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="00:00-00-00" />
+
+        <TextView
+            android:id="@+id/txtGoalCalAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Goal"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnIncrementCalAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Increment to hour"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

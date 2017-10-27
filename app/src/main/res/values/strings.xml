@@ -55,4 +55,5 @@
     <string name="error">Error</string>
     <string name="save_changes">Save changes</string>
     <string name="question_want_to_save_changes_project">Want to save changes?</string>
+    <string name="calendar">Calendar</string>
 </resources>

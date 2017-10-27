@@ -19,6 +19,8 @@
     <color name="floating_button">#ff8d0b</color>
     <color name="floating_button2">#fdfaa33e</color>
     <color name="floating_button_save_svg">#ffffff</color>
+    <color name="cal_act_1">#c2c2c2</color>
+    <color name="cal_act_2">#d9e2ff</color>
 
 
 </resources>
