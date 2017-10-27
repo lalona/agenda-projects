@@ -1,5 +1,7 @@
 package com.example.lalo10.agenda.NewProyect;
 
+import android.app.Activity;
+
 import java.util.Calendar;
 
 /**
@@ -23,6 +25,13 @@ public class CalActivities {
         } catch (NoTimeException e) {
             return "00:00";
         }
+    }
+
+    public int getMinDedicated() {
+        ActivityProyect hours = new ActivityProyect();
+        hours.setFromHour(fromHour);
+        hours.setToHour(toHour);
+        return hours.getToHourInMin() - hours.getFromHourInMin();
     }
 
     public String getGoal() {
