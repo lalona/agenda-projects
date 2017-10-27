@@ -54,15 +54,17 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public boolean alargeView(int diff) {
         if(viewAlargin == null)
             return false;
-        Log.d(TAG,"BeginY = " + beginY + "CurrentY = " + diff + " Height = "  + viewAlargin.getLayoutParams().height);
 
-        if(diff > (lastDiff + 50) || diff < (lastDiff - 50)) {
+
+        //if(diff > (lastDiff + 50) || diff < (lastDiff - 50)) {
+            Log.d(TAG,"BeginY = " + beginY + "CurrentY = " + diff + " Height = "  + viewAlargin.getLayoutParams().height);
             viewAlargin.getLayoutParams().height += diff - getBeginY();
             viewAlargin.requestLayout();
-            lastDiff = diff;
+            setBeginY(diff);
+            //lastDiff = diff;
             return true;
-        }
-        return true;
+        //}
+        //return true;
     }
 
     public boolean isAlargeTouched() {
@@ -87,6 +89,7 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public TextView goal;
         private View view;
         private Button btnAddMinToHour;
+        private Button btnSubMinFromHour; // Button substract minute to hour
         private int yBegin;
         private CalActOrgAdapter calActOrgAdapter;
 
@@ -97,7 +100,46 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             this.schedule = (TextView)v.findViewById(R.id.txtScheduleCalAct);
             this.goal = (TextView)v.findViewById(R.id.txtGoalCalAct);
             this.btnAddMinToHour = v.findViewById(R.id.btnIncrementCalAct);
+            this.btnSubMinFromHour = v.findViewById(R.id.btnDecremntCalAct);
             RelativeLayout rlItemCalAct = v.findViewById(R.id.rl_item_cal_act);
+            btnSubMinFromHour.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    int x=(int)event.getX();
+                    int y=(int)event.getRawY();
+
+                    int position[] = new int[2];
+                    int height = view.getLayoutParams().height;
+                    view.getLocationOnScreen(position);
+                    int currentY = position[1];
+
+                    //if((x - width <= 20 && x - width > 0) ||(width - x <= 20 && width - x > 0)){
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            //yBegin = y;
+                            Log.d(TAG,"Button action down");
+                            calActOrgAdapter.setBeginY(y);
+                            calActOrgAdapter.setAlargeTouched(true);
+                            calActOrgAdapter.setViewAlargin(view);
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            Log.d(TAG,"Button action move");
+                            //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
+                            //view.getLayoutParams().width = x;
+                                /*Log.d("CalActOrg","Y = " + y + "CurrentY = " + currentY + " Height = "  + view.getLayoutParams().height);
+                                view.getLayoutParams().height += y - yBegin;
+                                Log.d("CalActOrg","Height = "  + view.getLayoutParams().height);
+                                view.requestLayout();*/
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            Log.d(TAG,"Button action up");
+                            //calActOrgAdapter.setAlargeTouched(false);
+                            break;
+                    }
+                    //}
+                    return false;
+                }
+            });
             btnAddMinToHour.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
