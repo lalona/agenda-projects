@@ -63,6 +63,12 @@ public class FragmentCalendarAct extends Fragment{
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        AdjustmentHelper.setActivity(getActivity());
+    }
+
     private void interceptRecycleView() {
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override

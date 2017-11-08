@@ -16,6 +16,15 @@ public class CalActivities {
     Calendar date;
     int day; // it can be Calendar.SUNDAY,...Calendar.SATURDAY
 
+    public CalActivities() {
+        fromHour = Calendar.getInstance();
+        fromHour.set(Calendar.MINUTE,0);
+        fromHour.set(Calendar.HOUR_OF_DAY,0);
+        toHour = Calendar.getInstance();
+        toHour.set(Calendar.MINUTE,0);
+        toHour.set(Calendar.HOUR_OF_DAY,0);
+    }
+
     public String getSchedule() {
         DayId hours = new DayId();
         hours.setFromHour(fromHour);
@@ -36,6 +45,15 @@ public class CalActivities {
 
     public String getGoal() {
         return goal;
+    }
+
+    public void addMinutesToFromHour(int min) {
+        fromHour.add(Calendar.MINUTE,min);
+
+    }
+
+    public void addMinutesToToHour(int min) {
+        toHour.add(Calendar.MINUTE,min);
     }
 
 }

@@ -2,17 +2,12 @@ package com.example.lalo10.agenda.List_Adapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lalo10.agenda.Helpers.AdjustmentHelper;
-import com.example.lalo10.agenda.Helpers.TimeDimenHelper;
 import com.example.lalo10.agenda.NewProyect.CalActivities;
 import com.example.lalo10.agenda.R;
 
@@ -34,86 +29,11 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private List<SectionRow<String,CalActivities>> activitiesList;
 
-    private CalActOrgAdapter adjuster;
-
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class CalActViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView schedule;
-        public TextView goal;
-        private View view;
-        private Button btnAddMinToHour;
-        private Button btnSubMinFromHour; // Button substract minute to hour
-        private int yBegin;
-        private CalActOrgAdapter calActOrgAdapter;
-        private AdjustmentHelper adjuster;
-        private RelativeLayout rlItemCalAct;
-
-        public CalActViewHolder(View v) {
-
-            super(v);
-            this.adjuster = AdjustmentHelper.getOnlyInstance();
-            this.schedule = v.findViewById(R.id.txtScheduleCalAct);
-            this.goal = v.findViewById(R.id.txtGoalCalAct);
-            this.btnAddMinToHour = v.findViewById(R.id.btnIncrementCalAct);
-            this.btnSubMinFromHour = v.findViewById(R.id.btnDecremntCalAct);
-            rlItemCalAct = v.findViewById(R.id.rl_item_cal_act);
-            this.view = v;
-        }
-
-        public void addData(CalActivities calActivities, final int pos, Activity activity) {
-
-            if(((pos + 1) % 2) == 0) {
-                this.view.setBackgroundColor(activity.getResources().getColor(R.color.cal_act_1));
-            } else {
-                this.view.setBackgroundColor(activity.getResources().getColor(R.color.cal_act_2));
-            }
-            this.schedule.setText(calActivities.getSchedule());
-            this.goal.setText(calActivities.getGoal());
-            this.rlItemCalAct.getLayoutParams().height += TimeDimenHelper.getPxFromMin(calActivities.getMinDedicated(),activity);
-            this.rlItemCalAct.requestLayout();
-
-            btnSubMinFromHour.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    int y=(int)event.getRawY();
-
-                    int position[] = new int[2];
-                    view.getLocationOnScreen(position);
-
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN:
-                            Log.d(TAG,"Button action down");
-                            adjuster.touchStart(y,view,pos,AdjustmentHelper.Direction.DECRESE,CalActViewHolder.this);
-                            break;
-                    }
-                    return false;
-                }
-            });
-            btnAddMinToHour.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    int y=(int)event.getRawY();
-
-                    int position[] = new int[2];
-                    view.getLocationOnScreen(position);
-
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN:
-                            Log.d(TAG,"Button action down");
-                            adjuster.touchStart(y,view,pos, AdjustmentHelper.Direction.INCRESE);
-                            break;
-                    }
-                    return false;
-                }
-            });
-        }
-
-        public
-
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public CalActOrgAdapter(List<SectionRow<String,CalActivities>> myDataset,Activity activity) {
+        this.activitiesList = myDataset;
+        this.activity = activity;
+        AdjustmentHelper.setActivitiesList(myDataset);
     }
 
     public static class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -128,12 +48,6 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void addData(String day) {
             this.day.setText(day);
         }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public CalActOrgAdapter(List<SectionRow<String,CalActivities>> myDataset,Activity activity) {
-        this.activitiesList = myDataset;
-        this.activity = activity;
     }
 
     // Create new views (invoked by the layout manager)

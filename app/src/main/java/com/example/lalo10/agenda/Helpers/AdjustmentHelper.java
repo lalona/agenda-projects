@@ -1,10 +1,13 @@
 package com.example.lalo10.agenda.Helpers;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
-import com.example.lalo10.agenda.List_Adapters.CalActOrgAdapter;
+import com.example.lalo10.agenda.List_Adapters.SectionRow;
+import com.example.lalo10.agenda.NewProyect.CalActivities;
+
+import java.util.List;
 
 /**
  * Created by lalo10 on 11/8/17.
@@ -13,6 +16,7 @@ import com.example.lalo10.agenda.List_Adapters.CalActOrgAdapter;
 public class AdjustmentHelper {
 
     private View viewAlargin;
+    private View viewAlarginHolder;
     private int posViewPendingAdjustment;
     private int adjustmentSize;
     private Direction direction;
@@ -21,6 +25,9 @@ public class AdjustmentHelper {
     private int beginY;
     private int lastDiff;
     private static AdjustmentHelper onlyInstance;
+    private CallbackAdjustTime callbackAdjustTime;
+    private List<SectionRow<String,CalActivities>> activitiesList;
+    private Activity activity;
 
     private AdjustmentHelper() {}
 
@@ -32,12 +39,23 @@ public class AdjustmentHelper {
         return onlyInstance;
     }
 
-    public void touchStart(int startY,View v,int pos, Direction d) {
+    public static void setActivitiesList(List<SectionRow<String,CalActivities>> activitiesList) {
+        onlyInstance = getOnlyInstance();
+        onlyInstance.activitiesList = activitiesList;
+    }
+
+    public static void setActivity(Activity activity) {
+        onlyInstance = getOnlyInstance();
+        onlyInstance.activity = activity;
+    }
+
+    public void touchStart(int startY,View v,int pos, Direction d, CallbackAdjustTime callbackAdjustTime) {
         setBeginY(startY);
         setAlargeTouched(true);
         setViewAlargin(v);
         direction = d;
         setPosAlargin(pos);
+        this.callbackAdjustTime = callbackAdjustTime;
     }
 
     public enum Direction {
@@ -55,9 +73,8 @@ public class AdjustmentHelper {
         }
     }
 
-    public void setAdjustment(int pos, int adjustmentSize, Direction direction) {
-        this.direction = direction;
-        this.posViewPendingAdjustment = pos;
+    public void setAdjustment(int pos, int adjustmentSize) {
+        this.posViewPendingAdjustment = adjustmentSize;
         this.adjustmentSize = pos;
     }
 
@@ -106,6 +123,7 @@ public class AdjustmentHelper {
         } else {
             neighPos = getPosAlargin() + 1;
         }
+        int newBeginY = diff - beginY;
         neighbordView = layoutManager.findViewByPosition(neighPos);
         viewAlargin.getLayoutParams().height += getDiffForNewHeightForView(diff - getBeginY());
         viewAlargin.requestLayout();
@@ -113,10 +131,11 @@ public class AdjustmentHelper {
             neighbordView.getLayoutParams().height += getDiffForNewHeightForNeighbordView(diff - getBeginY());
             neighbordView.requestLayout();
             setPosViewPendingAdjustment(-1);
+            int min = TimeDimenHelper.getMinFromPx(newBeginY,activity);
+            callbackAdjustTime.adjustHour(min,activitiesList,getPosAlargin(),direction,neighbordView);
         }
         else {
-            setPosViewPendingAdjustment(neighPos);
-            setAdjustmentSize(diff - getBeginY());
+            setAdjustment(neighPos,newBeginY);
         }
         setBeginY(diff);
         return true;
@@ -128,6 +147,14 @@ public class AdjustmentHelper {
 
     private int getDiffForNewHeightForNeighbordView(int diff) {
         return (direction == Direction.INCRESE) ? -diff : diff;
+    }
+
+    public View getViewAlarginHolder() {
+        return viewAlarginHolder;
+    }
+
+    public void setViewAlarginHolder(View viewAlarginHolder) {
+        this.viewAlarginHolder = viewAlarginHolder;
     }
 
 }
