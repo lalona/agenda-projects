@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="@dimen/min_time_cal_act_5_min"
+    android:layout_height="@dimen/min_time_cal_act_1_hour"
     android:id="@+id/rl_item_cal_act">
 
     <Button
         android:id="@+id/btnDecremntCalAct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:text="Decrement from hour"
-        android:layout_alignParentBottom="true"/>
+
+        android:layout_alignParentTop="true"/>
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
@@ -29,7 +31,9 @@
         android:id="@+id/btnIncrementCalAct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:text="Increment to hour"
+        android:textSize="10sp"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

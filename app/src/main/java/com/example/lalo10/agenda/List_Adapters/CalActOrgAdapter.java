@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.lalo10.agenda.Helpers.AdjustmentHelper;
+import com.example.lalo10.agenda.Helpers.TimeDimenHelper;
 import com.example.lalo10.agenda.NewProyect.CalActivities;
 import com.example.lalo10.agenda.R;
 
@@ -26,58 +28,13 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static final int IS_ROW = 0;
     private static final int IS_SECTION = 1;
     private Activity activity;
-    private int lastDiff;
+
 
     private static final String TAG = CalActOrgAdapter.class.getSimpleName();
 
-    public View getViewAlargin() {
-        return viewAlargin;
-    }
-
-    public void setViewAlargin(View viewAlargin) {
-        this.viewAlargin = viewAlargin;
-    }
-
-    private View viewAlargin;
-
-    public int getBeginY() {
-        return beginY;
-    }
-
-    public void setBeginY(int beginY) {
-        this.beginY = beginY;
-        lastDiff = -1;
-    }
-
-    private int beginY;
-
-    public boolean alargeView(int diff) {
-        if(viewAlargin == null)
-            return false;
-
-
-        //if(diff > (lastDiff + 50) || diff < (lastDiff - 50)) {
-            Log.d(TAG,"BeginY = " + beginY + "CurrentY = " + diff + " Height = "  + viewAlargin.getLayoutParams().height);
-            viewAlargin.getLayoutParams().height += diff - getBeginY();
-            viewAlargin.requestLayout();
-            setBeginY(diff);
-            //lastDiff = diff;
-            return true;
-        //}
-        //return true;
-    }
-
-    public boolean isAlargeTouched() {
-        return alargeTouched;
-    }
-
-    public void setAlargeTouched(boolean alargeTouched) {
-        this.alargeTouched = alargeTouched;
-    }
-
-    private boolean alargeTouched;
-
     private List<SectionRow<String,CalActivities>> activitiesList;
+
+    private CalActOrgAdapter adjuster;
 
 
     // Provide a reference to the views for each data item
@@ -92,96 +49,22 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         private Button btnSubMinFromHour; // Button substract minute to hour
         private int yBegin;
         private CalActOrgAdapter calActOrgAdapter;
+        private AdjustmentHelper adjuster;
+        private RelativeLayout rlItemCalAct;
 
-        public CalActViewHolder(View v, final CalActOrgAdapter calActOrgAdapter) {
+        public CalActViewHolder(View v) {
 
             super(v);
-            this.calActOrgAdapter = calActOrgAdapter;
-            this.schedule = (TextView)v.findViewById(R.id.txtScheduleCalAct);
-            this.goal = (TextView)v.findViewById(R.id.txtGoalCalAct);
+            this.adjuster = AdjustmentHelper.getOnlyInstance();
+            this.schedule = v.findViewById(R.id.txtScheduleCalAct);
+            this.goal = v.findViewById(R.id.txtGoalCalAct);
             this.btnAddMinToHour = v.findViewById(R.id.btnIncrementCalAct);
             this.btnSubMinFromHour = v.findViewById(R.id.btnDecremntCalAct);
-            RelativeLayout rlItemCalAct = v.findViewById(R.id.rl_item_cal_act);
-            btnSubMinFromHour.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    int x=(int)event.getX();
-                    int y=(int)event.getRawY();
-
-                    int position[] = new int[2];
-                    int height = view.getLayoutParams().height;
-                    view.getLocationOnScreen(position);
-                    int currentY = position[1];
-
-                    //if((x - width <= 20 && x - width > 0) ||(width - x <= 20 && width - x > 0)){
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN:
-                            //yBegin = y;
-                            Log.d(TAG,"Button action down");
-                            calActOrgAdapter.setBeginY(y);
-                            calActOrgAdapter.setAlargeTouched(true);
-                            calActOrgAdapter.setViewAlargin(view);
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            Log.d(TAG,"Button action move");
-                            //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-                            //view.getLayoutParams().width = x;
-                                /*Log.d("CalActOrg","Y = " + y + "CurrentY = " + currentY + " Height = "  + view.getLayoutParams().height);
-                                view.getLayoutParams().height += y - yBegin;
-                                Log.d("CalActOrg","Height = "  + view.getLayoutParams().height);
-                                view.requestLayout();*/
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            Log.d(TAG,"Button action up");
-                            //calActOrgAdapter.setAlargeTouched(false);
-                            break;
-                    }
-                    //}
-                    return false;
-                }
-            });
-            btnAddMinToHour.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    int x=(int)event.getX();
-                    int y=(int)event.getRawY();
-
-                    int position[] = new int[2];
-                    int height = view.getLayoutParams().height;
-                    view.getLocationOnScreen(position);
-                    int currentY = position[1];
-
-                    //if((x - width <= 20 && x - width > 0) ||(width - x <= 20 && width - x > 0)){
-                        switch (event.getAction()){
-                            case MotionEvent.ACTION_DOWN:
-                                //yBegin = y;
-                                Log.d(TAG,"Button action down");
-                                calActOrgAdapter.setBeginY(y);
-                                calActOrgAdapter.setAlargeTouched(true);
-                                calActOrgAdapter.setViewAlargin(view);
-                                break;
-                            case MotionEvent.ACTION_MOVE:
-                                Log.d(TAG,"Button action move");
-                                //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-                                //view.getLayoutParams().width = x;
-                                /*Log.d("CalActOrg","Y = " + y + "CurrentY = " + currentY + " Height = "  + view.getLayoutParams().height);
-                                view.getLayoutParams().height += y - yBegin;
-                                Log.d("CalActOrg","Height = "  + view.getLayoutParams().height);
-                                view.requestLayout();*/
-                                break;
-                            case MotionEvent.ACTION_UP:
-                                Log.d(TAG,"Button action up");
-                                //calActOrgAdapter.setAlargeTouched(false);
-                                break;
-                        }
-                    //}
-                    return false;
-                }
-            });
+            rlItemCalAct = v.findViewById(R.id.rl_item_cal_act);
             this.view = v;
         }
 
-        public void addData(CalActivities calActivities,int pos,Activity activity) {
+        public void addData(CalActivities calActivities, final int pos, Activity activity) {
 
             if(((pos + 1) % 2) == 0) {
                 this.view.setBackgroundColor(activity.getResources().getColor(R.color.cal_act_1));
@@ -190,7 +73,46 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             this.schedule.setText(calActivities.getSchedule());
             this.goal.setText(calActivities.getGoal());
+            this.rlItemCalAct.getLayoutParams().height += TimeDimenHelper.getPxFromMin(calActivities.getMinDedicated(),activity);
+            this.rlItemCalAct.requestLayout();
+
+            btnSubMinFromHour.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    int y=(int)event.getRawY();
+
+                    int position[] = new int[2];
+                    view.getLocationOnScreen(position);
+
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            Log.d(TAG,"Button action down");
+                            adjuster.touchStart(y,view,pos,AdjustmentHelper.Direction.DECRESE,CalActViewHolder.this);
+                            break;
+                    }
+                    return false;
+                }
+            });
+            btnAddMinToHour.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    int y=(int)event.getRawY();
+
+                    int position[] = new int[2];
+                    view.getLocationOnScreen(position);
+
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            Log.d(TAG,"Button action down");
+                            adjuster.touchStart(y,view,pos, AdjustmentHelper.Direction.INCRESE);
+                            break;
+                    }
+                    return false;
+                }
+            });
         }
+
+        public
 
     }
 
@@ -212,7 +134,6 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public CalActOrgAdapter(List<SectionRow<String,CalActivities>> myDataset,Activity activity) {
         this.activitiesList = myDataset;
         this.activity = activity;
-        this.alargeTouched = false;
     }
 
     // Create new views (invoked by the layout manager)
@@ -221,7 +142,7 @@ public class CalActOrgAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                                    int viewType) {
         if(viewType==IS_ROW) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cal_act, parent, false);
-            return new CalActViewHolder(v,this);
+            return new CalActViewHolder(v);
         } else if ( viewType == IS_SECTION) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_day_header_cal_act, parent, false);
             return new HeaderViewHolder(v);

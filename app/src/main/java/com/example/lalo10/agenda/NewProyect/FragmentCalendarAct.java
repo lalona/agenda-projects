@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.lalo10.agenda.Helpers.AdjustmentHelper;
 import com.example.lalo10.agenda.List_Adapters.CalActOrgAdapter;
 import com.example.lalo10.agenda.List_Adapters.SectionRow;
 import com.example.lalo10.agenda.R;
@@ -31,6 +32,7 @@ public class FragmentCalendarAct extends Fragment{
     private int beginY;
     private int beginDiff;
     private static final String TAG = FragmentCalendarAct.class.getSimpleName();
+    private AdjustmentHelper adjuster;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,73 +59,28 @@ public class FragmentCalendarAct extends Fragment{
         mAdapter = new CalActOrgAdapter(getDumbData(),getActivity());
         mRecyclerView.setAdapter(mAdapter);
         interceptRecycleView();
+        adjuster = AdjustmentHelper.getOnlyInstance();
         return rootView;
     }
 
     private void interceptRecycleView() {
-
-        RecyclerView.OnItemTouchListener mOnItemTouchListener = new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                /*if (e.getAction() == MotionEvent.ACTION_DOWN && rv.getScrollState() == RecyclerView.SCROLL_STATE_SETTLING) {
-                    //Log.d(TAG, "onInterceptTouchEvent: click performed");
-                    //rv.findChildViewUnder(e.getX(), e.getY()).performClick();
-                    if(mAdapter.isAlargeTouched())
-                        Log.d("FragmentCalendarAct","Is alarging");
-                    else
-                        Log.d("FragmentCalendarAct","Naaaa");
-                    return true;
-                }*/
-                if(mAdapter.isAlargeTouched()) {
-                    Log.d("FragmentCalendarAct","Is alarging");
-                    int y = (int) e.getRawY();
-                    switch (e.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            beginDiff = mAdapter.getBeginY() - y;
-                            Log.d(TAG,"Recycler action move " + beginDiff);
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            Log.d(TAG,"Recycler action move");
-                            //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-                            //view.getLayoutParams().width = x;
-                            mAdapter.alargeView(y + 1000);
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            Log.d(TAG,"Recycler action up");
-                            mAdapter.setAlargeTouched(false);
-                            break;
-                    }
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {}
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {}
-        };
-        //mRecyclerView.addOnItemTouchListener(mOnItemTouchListener);
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent e) {
-                if(mAdapter.isAlargeTouched()) {
+                if(adjuster.isAlargeTouched()) {
                     Log.d("FragmentCalendarAct","Is alarging");
                     int y = (int) e.getRawY();
                     switch (e.getAction()) {
                         case MotionEvent.ACTION_DOWN:
-                            beginDiff = mAdapter.getBeginY() - y;
+                            beginDiff = adjuster.getBeginY() - y;
                             break;
                         case MotionEvent.ACTION_MOVE:
                             Log.d(TAG,"Recycler action move");
-                            //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-                            //view.getLayoutParams().width = x;
-                            mAdapter.alargeView(y + beginDiff);
+                            adjuster.alargeView(y + beginDiff,mLayoutManager);
                             break;
                         case MotionEvent.ACTION_UP:
                             Log.d(TAG,"Recycler action up");
-                            mAdapter.setAlargeTouched(false);
+                            adjuster.setAlargeTouched(false);
                             break;
                     }
                     return true;
